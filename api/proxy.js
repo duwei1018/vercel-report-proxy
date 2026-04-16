@@ -7,6 +7,13 @@ const ORIGIN = "https://report.siwuya.org";
 
 export default async function handler(req, res) {
   const url = new URL(req.url, `https://${req.headers.host}`);
+
+  // 微信服务号域名验证
+  if (url.pathname === "/MP_verify_hsjYs8mSvaUfyI1z.txt") {
+    res.setHeader("Content-Type", "text/plain");
+    return res.status(200).send("hsjYs8mSvaUfyI1z");
+  }
+
   const targetUrl = `${ORIGIN}${url.pathname}${url.search}`;
 
   try {
