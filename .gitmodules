@@ -1,0 +1,3 @@
+[submodule "src/content/siwuya-data"]
+	path = src/content/siwuya-data
+	url = https://github.com/duwei1018/siwuya-data.git
