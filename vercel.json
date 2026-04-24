@@ -1,6 +1,4 @@
 {
-  "rewrites": [
-    { "source": "/MP_verify_hsjYs8mSvaUfyI1z.txt", "destination": "/MP_verify_hsjYs8mSvaUfyI1z.txt" },
-    { "source": "/(.*)", "destination": "/api/proxy" }
-  ]
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs"
 }
