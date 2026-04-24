@@ -461,3 +461,188 @@ footer.disclaimer a {
   .risks-list li { flex-direction: column; gap: 0.3em; }
   .risk-category { align-self: flex-start; }
 }
+
+/* ───────────────────── /beta + /unsubscribe ───────────────────── */
+
+.beta-page,
+.unsubscribe-page {
+  /* inherits main max-width 720px */
+}
+
+.beta-hero {
+  margin: 1em 0 2em;
+}
+
+.beta-hero h1 {
+  font-size: 32px;
+  margin-bottom: 0.4em;
+}
+
+.beta-subtitle {
+  font-size: 17px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.beta-value-props {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2em;
+  margin: 2.5em 0;
+}
+
+.beta-value-props > div {
+  padding: 1.2em;
+  background: rgba(232, 223, 210, 0.35);
+  border-radius: 8px;
+}
+
+.beta-value-props h3 {
+  margin: 0 0 0.4em;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.beta-value-props p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.beta-form {
+  margin: 2.5em 0;
+  padding: 1.8em;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+}
+
+.beta-label {
+  font-size: 14px;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  margin-top: 0.4em;
+}
+
+.beta-input,
+.beta-textarea {
+  font: inherit;
+  font-size: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 44px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.beta-textarea {
+  min-height: 80px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.beta-input:focus,
+.beta-textarea:focus {
+  outline: 2px solid var(--link);
+  outline-offset: 1px;
+}
+
+.beta-submit {
+  margin-top: 0.8em;
+  padding: 12px 24px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  min-height: 44px;
+  transition: background 120ms ease;
+}
+
+.beta-submit:hover:not(:disabled) {
+  background: var(--link-hover);
+}
+
+.beta-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.beta-feedback {
+  margin: 0.8em 0 0;
+  padding: 0.8em 1em;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.beta-feedback-success {
+  background: rgba(122, 92, 66, 0.1);
+  color: var(--text);
+  border-left: 3px solid var(--link);
+}
+
+.beta-feedback-error {
+  background: rgba(201, 81, 59, 0.08);
+  color: var(--accent);
+  border-left: 3px solid var(--accent);
+}
+
+.beta-form-note {
+  margin: 0.6em 0 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.beta-info {
+  margin: 2.5em 0;
+  padding: 1.2em 1.5em;
+  background: rgba(232, 223, 210, 0.3);
+  border-radius: 8px;
+  border-left: 3px solid var(--link);
+}
+
+.beta-info ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.beta-info li {
+  margin-bottom: 0.5em;
+}
+
+.beta-info li:last-child {
+  margin-bottom: 0;
+}
+
+.unsubscribe-email {
+  font-family: var(--font-en);
+  font-size: 17px;
+  letter-spacing: 0.02em;
+}
+
+.unsubscribe-submit {
+  margin-top: 1.2em;
+  background: var(--accent);
+}
+
+.unsubscribe-submit:hover:not(:disabled) {
+  background: #a33f2c;
+}
+
+@media (max-width: 640px) {
+  .beta-value-props {
+    grid-template-columns: 1fr;
+    gap: 0.8em;
+  }
+  .beta-hero h1 { font-size: 26px; }
+}

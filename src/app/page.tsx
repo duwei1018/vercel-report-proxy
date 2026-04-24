@@ -24,7 +24,6 @@ export default function HomePage() {
         </li>
         <li>
           <Link href="/beta">订阅 Beta</Link>
-          <span className="coming-soon">v2 Phase 3</span>
         </li>
       </ul>
 
