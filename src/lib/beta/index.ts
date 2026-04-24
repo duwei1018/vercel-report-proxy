@@ -2,6 +2,7 @@ export {
   addSubscriber,
   removeSubscriber,
   countSubscribers,
+  listAllSubscribers,
   isStorageConfigured,
 } from "./storage";
 export { sendWelcomeEmail, isEmailConfigured } from "./email";

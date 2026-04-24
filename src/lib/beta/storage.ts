@@ -23,6 +23,7 @@ type KVClient = {
   sadd: (key: string, ...members: string[]) => Promise<number>;
   srem: (key: string, ...members: string[]) => Promise<number>;
   scard: (key: string) => Promise<number>;
+  smembers: (key: string) => Promise<string[]>;
 };
 
 let kvSingleton: KVClient | null | undefined;
@@ -114,6 +115,27 @@ export async function countSubscribers(): Promise<number | null> {
   const kv = await getKV();
   if (!kv) return null;
   return kv.scard(ALL_KEY);
+}
+
+/**
+ * List all active subscribers. Null return signals "KV not configured"; caller
+ * must treat that as a refusal to fan-out, not an empty list.
+ *
+ * There is no "unsubscribed" flag — removeSubscriber deletes the record, so
+ * anyone present here is by definition active.
+ */
+export async function listAllSubscribers(): Promise<Subscriber[] | null> {
+  const kv = await getKV();
+  if (!kv) return null;
+  const emails = (await (kv as unknown as {
+    smembers: (k: string) => Promise<string[]>;
+  }).smembers(ALL_KEY)) ?? [];
+  const out: Subscriber[] = [];
+  for (const email of emails) {
+    const rec = await kv.get<Subscriber>(subscriberKey(email));
+    if (rec) out.push(rec);
+  }
+  return out;
 }
 
 export function isStorageConfigured(): boolean {

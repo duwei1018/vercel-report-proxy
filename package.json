@@ -9,16 +9,20 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "smoke": "tsx scripts/smoke-loader.ts",
-    "smoke:beta": "tsx scripts/smoke-beta.ts"
+    "smoke:beta": "tsx scripts/smoke-beta.ts",
+    "send-brief": "tsx scripts/send-brief.ts"
   },
   "dependencies": {
     "@vercel/kv": "^3.0.0",
     "ajv": "^8.18.0",
     "ajv-formats": "^3.0.1",
+    "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.1",
     "next": "^15.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
     "resend": "^6.12.2"
   },
   "devDependencies": {

@@ -20,7 +20,6 @@ export default function HomePage() {
         </li>
         <li>
           <Link href="/brief">历期 Weekly Brief</Link>
-          <span className="coming-soon">v2 Phase 4</span>
         </li>
         <li>
           <Link href="/beta">订阅 Beta</Link>

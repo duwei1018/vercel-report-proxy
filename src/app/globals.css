@@ -646,3 +646,231 @@ footer.disclaimer a {
   }
   .beta-hero h1 { font-size: 26px; }
 }
+
+/* ───────────────────── /brief list + detail ───────────────────── */
+
+.brief-index .lead {
+  font-size: 16px;
+  color: var(--text-muted);
+  margin-bottom: 2em;
+}
+
+.brief-notice {
+  margin-top: 2em;
+  padding: 0.8em 1em;
+  background: rgba(232, 223, 210, 0.35);
+  border-left: 3px solid var(--link);
+  font-size: 14px;
+  color: var(--text-muted);
+  border-radius: 4px;
+}
+
+.brief-list {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  gap: 1em;
+}
+
+.brief-card {
+  margin: 0;
+}
+
+.brief-card-link {
+  display: block;
+  padding: 1.2em 1.4em;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  transition: border-color 120ms ease;
+}
+
+.brief-card-link:hover {
+  border-color: var(--link);
+}
+
+.brief-card-meta {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 0.5em;
+  letter-spacing: 0.03em;
+}
+
+.brief-card-issue {
+  font-weight: 600;
+}
+
+.brief-card-title {
+  font-size: 18px;
+  margin: 0 0 0.4em;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.brief-card-summary {
+  margin: 0 0 0.6em;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.brief-card-companies {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.brief-header {
+  margin: 1em 0 2.4em;
+  padding-bottom: 1.5em;
+  border-bottom: 1px solid var(--border);
+}
+
+.brief-eyebrow {
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 0.6em;
+}
+
+.brief-title {
+  font-size: 30px;
+  margin: 0 0 0.4em;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.brief-summary {
+  font-size: 17px;
+  color: var(--text);
+  margin: 0 0 0.6em;
+}
+
+.brief-author {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.brief-body {
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+.brief-body h2 {
+  font-size: 22px;
+  margin-top: 1.8em;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.3em;
+}
+
+.brief-body h3 {
+  font-size: 17px;
+  color: var(--text);
+  margin-top: 1.4em;
+}
+
+.brief-body blockquote {
+  margin: 1.2em 0;
+  padding: 0.8em 1.2em;
+  background: rgba(232, 223, 210, 0.3);
+  border-left: 3px solid var(--link);
+  color: var(--text);
+  border-radius: 0 6px 6px 0;
+}
+
+.brief-body blockquote p {
+  margin: 0.4em 0;
+}
+
+.brief-body code {
+  font-family: 'SF Mono', Consolas, 'Liberation Mono', monospace;
+  font-size: 0.9em;
+  padding: 1px 5px;
+  background: rgba(232, 223, 210, 0.5);
+  border-radius: 3px;
+}
+
+.brief-body pre {
+  background: rgba(232, 223, 210, 0.35);
+  padding: 1em 1.2em;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.brief-body pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.brief-body ul,
+.brief-body ol {
+  padding-left: 1.4em;
+}
+
+.brief-body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2em 0;
+}
+
+.brief-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 15px;
+}
+
+.brief-body th,
+.brief-body td {
+  border: 1px solid var(--border);
+  padding: 0.5em 0.8em;
+  text-align: left;
+}
+
+.brief-body th {
+  background: rgba(232, 223, 210, 0.4);
+  font-weight: 600;
+}
+
+.brief-company-link {
+  color: var(--link);
+  border-bottom: 1px dotted var(--link);
+}
+
+.brief-company-link:hover {
+  color: var(--link-hover);
+  border-bottom-style: solid;
+}
+
+.brief-cta {
+  margin: 2.5em 0;
+  padding: 1.4em 1.6em;
+  background: rgba(232, 223, 210, 0.35);
+  border-left: 3px solid var(--link);
+  border-radius: 0 8px 8px 0;
+}
+
+.brief-cta p {
+  margin: 0 0 0.8em;
+}
+
+.brief-cta p:last-child {
+  margin: 0;
+}
+
+.brief-cta .beta-submit {
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: none;
+  color: var(--bg);
+}
+
+@media (max-width: 480px) {
+  .brief-title { font-size: 24px; }
+  .brief-body { font-size: 16px; }
+  .brief-body h2 { font-size: 19px; }
+}
