@@ -1,14 +1,24 @@
 import { NextResponse } from "next/server";
+import { countSubscribers, isStorageConfigured } from "@/lib/beta";
 
-// 临时诊断端点：只报告 env 变量是否存在（不回显 value），用于排查 /beta flow。
-// 不含秘密，可以公开访问。
-// 完成 E2E 验收后删除（见 task 列表）。
+// 临时诊断端点：报告 env 存在性 + Redis 连接状态 + 订阅者数。
+// 不回显秘密,只 boolean/前缀/聚合。
+// E2E 完成后删除。
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 export async function GET() {
   const redisUrl = process.env.REDIS_URL ?? "";
+
+  let subscriberCount: number | null = null;
+  let redisError: string | null = null;
+  try {
+    subscriberCount = await countSubscribers();
+  } catch (err) {
+    redisError = err instanceof Error ? err.message : String(err);
+  }
+
   return NextResponse.json({
     ok: true,
     env: {
@@ -31,6 +41,11 @@ export async function GET() {
       NODE_ENV: process.env.NODE_ENV ?? null,
       VERCEL_ENV: process.env.VERCEL_ENV ?? null,
       VERCEL_GIT_COMMIT_SHA: (process.env.VERCEL_GIT_COMMIT_SHA ?? "").slice(0, 7),
+    },
+    storage: {
+      configured: isStorageConfigured(),
+      subscriberCount,
+      redisError,
     },
   });
 }
