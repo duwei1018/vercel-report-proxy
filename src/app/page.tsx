@@ -17,7 +17,6 @@ export default function HomePage() {
       <ul>
         <li>
           <Link href="/companies">浏览公司档案</Link>
-          <span className="coming-soon">v2 Phase 2</span>
         </li>
         <li>
           <Link href="/brief">历期 Weekly Brief</Link>
