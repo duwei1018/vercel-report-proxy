@@ -1,11 +1,19 @@
-// Server component · 从 info-collector (report.siwuya.org) 拉最近文档
-// 设计意图（Claude@2026-04-26）：v2 新门户需要「全面接入」info-collector 已有的
-// 日报/公告/研究流量。/api/recent-docs 是 info-collector CF Worker 的 landing API，
-// 返回最近 24 条文档（news / announcement / research / social / commentary），
-// 按 published_at 倒序。v2 首页只展示前 8 条，保持门户简洁。
+'use client';
+
+// Client component · 从 info-collector (report.siwuya.org) 拉最近文档
+// 设计意图（Claude@2026-04-24）：v2 新门户需要「全面接入」info-collector 已有的
+// 日报/公告/研究流量。/api/recent-docs 是 info-collector CF Worker 的 landing API,
+// 返回最近 24 条文档（news / announcement / research / social / commentary）,
+// 按 published_at 倒序。
 //
-// 容错：fetch 失败 → 整个 section 静默隐藏（不污染首页）。
-// 缓存：Next.js revalidate 15min，与 info-collector daemon 刷新节奏对齐。
+// 为何 client 而非 server：Vercel serverless 出口 IP 被 Cloudflare bot-challenge 拦下
+// （实测 /daily/* 反代同病因），server-side fetch 几乎必挂。改由访客浏览器直接跨域
+// fetch，报头走真实浏览器 UA，CF 不挑战。API 已有 `Access-Control-Allow-Origin: *`。
+//
+// 容错：fetch 失败 / 非预期 schema / 空数组 → 整个 section 静默隐藏（不污染首页）。
+// 缓存：浏览器 HTTP cache + API 的 `Cache-Control: public, max-age=60`。
+
+import { useEffect, useState } from 'react';
 
 type RecentDoc = {
   doc_type: string;
@@ -26,37 +34,53 @@ const TYPE_LABEL: Record<string, string> = {
   event: '事件',
 };
 
-async function fetchRecentDocs(): Promise<RecentDoc[]> {
-  try {
-    const res = await fetch('https://report.siwuya.org/api/recent-docs', {
-      next: { revalidate: 900 }, // 15 min
-    });
-    if (!res.ok) return [];
-    const data = await res.json();
-    if (!Array.isArray(data?.docs)) return [];
-    return data.docs.slice(0, 8);
-  } catch {
-    return [];
-  }
-}
-
 function formatDate(iso?: string): string {
   if (!iso) return '';
-  // "2026-04-24" → "04-24"
   const m = iso.match(/^(\d{4})-(\d{2})-(\d{2})/);
   return m ? `${m[2]}-${m[3]}` : iso;
 }
 
-export default async function RecentDocs() {
-  const docs = await fetchRecentDocs();
-  if (docs.length === 0) return null;
+type Props = {
+  limit?: number;
+  heading?: string;
+  subheading?: string;
+  moreLink?: boolean;
+};
+
+export default function RecentDocs({
+  limit = 8,
+  heading = '最近动态',
+  subheading = '来自思无崖日报系统的近期追踪',
+  moreLink = true,
+}: Props) {
+  const [docs, setDocs] = useState<RecentDoc[] | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('https://report.siwuya.org/api/recent-docs')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (cancelled) return;
+        if (!data || !Array.isArray(data.docs)) {
+          setDocs([]);
+          return;
+        }
+        setDocs(data.docs.slice(0, limit));
+      })
+      .catch(() => {
+        if (!cancelled) setDocs([]);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [limit]);
+
+  if (docs === null || docs.length === 0) return null;
 
   return (
     <section className="recent-docs">
-      <h2>最近动态</h2>
-      <p className="recent-docs-sub">
-        来自思无崖日报系统的近期追踪（每 15 分钟刷新）
-      </p>
+      <h2>{heading}</h2>
+      <p className="recent-docs-sub">{subheading}</p>
       <ul className="recent-docs-list">
         {docs.map((d) => (
           <li key={d.doc_id} className="recent-docs-item">
@@ -81,11 +105,13 @@ export default async function RecentDocs() {
           </li>
         ))}
       </ul>
-      <p className="recent-docs-more">
-        <a href="https://report.siwuya.org/" target="_blank" rel="noopener">
-          查看更多 →
-        </a>
-      </p>
+      {moreLink ? (
+        <p className="recent-docs-more">
+          <a href="https://report.siwuya.org/" target="_blank" rel="noopener">
+            查看更多 →
+          </a>
+        </p>
+      ) : null}
     </section>
   );
 }

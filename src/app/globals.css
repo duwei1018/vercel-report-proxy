@@ -958,3 +958,61 @@ footer.disclaimer a {
   color: var(--link-hover, #5C4332);
   text-decoration: underline;
 }
+
+/* ——— 页底搜索框 ——— */
+.footer-search {
+  margin: 48px 0 24px;
+  padding: 24px;
+  background: rgba(232, 223, 210, 0.3);
+  border-radius: 8px;
+}
+.footer-search form {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+.footer-search input[type="search"] {
+  flex: 1;
+  min-height: 44px;
+  padding: 10px 14px;
+  font-size: 16px;
+  font-family: var(--font-zh, serif);
+  background: var(--bg, #FAF8F3);
+  color: var(--text, #3E2F24);
+  border: 1px solid var(--border, #D9CDBD);
+  border-radius: 6px;
+}
+.footer-search input[type="search"]:focus {
+  outline: 2px solid var(--link, #7A5C42);
+  outline-offset: 1px;
+}
+.footer-search-btn {
+  min-height: 44px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-family: var(--font-zh, serif);
+  color: var(--bg, #FAF8F3);
+  background: var(--link, #7A5C42);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.footer-search-btn:hover {
+  background: var(--link-hover, #5C4332);
+}
+.footer-search-hint {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: var(--text-muted, #6b5a4a);
+}
+.footer-search-hint a {
+  color: var(--link, #7A5C42);
+}
+@media (max-width: 480px) {
+  .footer-search {
+    padding: 16px;
+  }
+  .footer-search form {
+    flex-direction: column;
+  }
+}

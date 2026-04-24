@@ -1,0 +1,131 @@
+# 小米集团 公司档案 · scaffolding
+#
+# 这是一份结构齐全但**内容待填**的草稿。Claude Code 只填公开可验证的硬事实
+# （上市日、行业、HQ、分部结构等），**一切投研判断字段用 TODO 占位**。
+#
+# 归属：admin 复制到 siwuya-data/companies/hk/xiaomi.yaml 后填完剩余 TODO，
+# 再 `cd src/content/siwuya-data && git add companies/hk/xiaomi.yaml && git commit`。
+# 主站 repo 绝不写入 submodule（红线）。
+#
+# 校验：填完后跑 `python siwuya-data/scripts/validate_company.py xiaomi.yaml`。
+
+meta:
+  schema_version: "0.1.0"
+  last_reviewed: "2026-04-24"
+  reviewer: "@siwuya"                          # TODO: 填真实 reviewer GitHub handle
+  data_freshness_note: "初版档案 · 首次提交"
+
+identity:
+  primary_ticker: "01810.HK"
+  aliases: ["1810.HK", "XIACF", "XIACY", "小米", "小米集团", "Xiaomi"]
+  name_zh: "小米集团"
+  name_zh_full: "小米集团股份有限公司"
+  name_en: "Xiaomi Corporation"
+  slug: "xiaomi"
+  exchange: "HKEX"
+  listing_date: "2018-07-09"
+  fiscal_year_end: "12-31"
+  reporting_currency: "CNY"
+  hq_country: "CN"
+  hq_city: "Beijing"
+  website: "https://www.mi.com"
+  ir_website: "https://ir.mi.com"
+
+classification:
+  gics_sector: "Information Technology"
+  gics_industry_group: "Technology Hardware & Equipment"
+  # TODO: 下列三句一句话需要 admin 按投研视角重写（Claude 版是中性描述，不是定位）
+  primary_business_zh: "智能手机 · AIoT 生态 · 互联网服务 · 智能电动汽车"
+  business_one_liner_zh: "TODO: 用一句话说清小米的商业模式（硬件低毛利引流 + 互联网服务变现 + 造车新增长曲线）"
+  business_one_liner_en: "TODO: one-liner in English for global readers"
+
+# TODO: 以下 segments.revenue_share 需按最近年报更新。Claude 留空，admin 填。
+segments:
+  - name: "智能手机"
+    revenue_share_fy2024: null                 # TODO
+    margin_profile: null                       # TODO
+    note: "小米集团历史核心业务"
+  - name: "IoT 与生活消费产品"
+    revenue_share_fy2024: null                 # TODO
+    margin_profile: null                       # TODO
+  - name: "互联网服务"
+    revenue_share_fy2024: null                 # TODO
+    margin_profile: "历史毛利最高板块"
+  - name: "智能电动汽车及其他创新业务"
+    revenue_share_fy2024: null                 # TODO
+    margin_profile: null                       # TODO
+    note: "2024-03 SU7 量产交付起披露"
+
+business_model:
+  # TODO: 以下全部是 admin 的投研判断，不能由 Claude 写
+  revenue_engines:
+    - "TODO: 填实际收入引擎（例：手机出货量 × ASP × 区域结构）"
+  cost_structure_notes: "TODO: 写成本结构与经营杠杆"
+  unit_economics_highlights:
+    - "TODO: ROIC / 手机毛利率 / MIUI MAU / ARPU / SU7 单车毛利等关键单位经济指标"
+
+moat:
+  # TODO: 护城河评估必须由 admin 主导，Claude 不给 assessment
+  assessment: null                             # "none" | "narrow" | "wide"，留空强制 admin 判断
+  types: []                                    # TODO: 填 switching_costs / network_effects / brand / cost_advantage 中有证据的类型
+  pat_dorsey_framework:
+    intangible_assets: "TODO"
+    switching_costs: "TODO"
+    network_effects: "TODO"
+    cost_advantage: "TODO"
+    efficient_scale: "TODO"
+
+management:
+  chairman_ceo:
+    name_zh: "雷军"
+    name_en: "Lei Jun"
+    tenure_since: "2010-04-06"                 # 小米创立日
+    background_brief: "TODO: 背景简介（金山 CEO 卸任后创立小米的时序、与汽车业务的个人信用绑定）"
+  key_executives:
+    # TODO: admin 补齐当前在任高管（总裁 / CFO / 汽车部门负责人等）
+    - name_zh: "TODO"
+      name_en: "TODO"
+      role: "TODO"
+  governance_notes: |
+    TODO: 双重股权结构要写清（A/B 股 voting ratio 1:10），
+    关联交易（如小米生态链企业）的披露质量，
+    独董占比与审计委员会构成。
+
+integrity_tracking:
+  # TODO: 本栏是思无崖档案的核心。admin 必须从近 4-8 个季度的 earnings call /
+  # 年报 / 产品发布会 / 投资者日里提取 5-15 条可追踪承诺。
+  # 每条必须有 source URL（文字版 transcript 或视频时间戳）+ due_by 日期。
+  # 不要让 Claude 编造承诺，编造比空着更糟。
+  tracked_promises: []
+  scoring_data_location: "https://siwuya.org/company/xiaomi"
+
+key_risks:
+  # TODO: 这里是投研判断，admin 必填。Claude 不预填以免引导偏见。
+  - category: "competitive"
+    risk_zh: "TODO: 智能手机红海 + 造车竞争格局"
+  - category: "execution"
+    risk_zh: "TODO: 造车产能 / 软件栈 / 销售网络的执行风险"
+  - category: "regulatory"
+    risk_zh: "TODO: 海外市场监管 / 数据跨境 / 美国实体清单历史"
+  - category: "macro"
+    risk_zh: "TODO: 手机换机周期 / 新能源车补贴政策 / 中国消费信心"
+
+further_reading:
+  primary_sources:
+    - title: "小米集团 2024 年年报"
+      url: "https://ir.mi.com/financial-reports"         # TODO: 指向具体 PDF
+    - title: "小米集团 2024 Q4 及全年业绩发布会"
+      url: "https://ir.mi.com/events"                    # TODO: 具体链接
+  third_party_research:
+    # TODO: admin 补充 3-5 份值得对照的第三方研究
+    - title: "TODO"
+      url: "TODO"
+      note: "TODO"
+
+disclaimer: |
+  本档案来自开源数据仓库 siwuya-data。内容由社区贡献者按照思无崖的公司档案 schema
+  整理，仅限研究讨论，不构成投资建议。
+
+  诚信评分与承诺追踪实时状态属订阅服务，本页仅展示公开事实与结构化分析框架。
+
+  详细免责条款见 https://siwuya.org/disclaimer

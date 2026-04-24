@@ -1,12 +1,14 @@
 "use client";
 
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import type { CompanySummary } from "@/lib/siwuya-data";
 
 /**
  * Render-prop client component: keeps the filter input + state colocated with
  * the listing markup that depends on it, while the parent server component
  * still owns the data fetch and grouping logic.
+ *
+ * 读取 URL ?q= 作为初始值，让"页底搜索框 → /companies?q=xxx"链路闭合。
  */
 export function CompanyFilter({
   companies,
@@ -16,6 +18,13 @@ export function CompanyFilter({
   children: (filtered: CompanySummary[]) => ReactNode;
 }) {
   const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get("q");
+    if (q) setQuery(q);
+  }, []);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();

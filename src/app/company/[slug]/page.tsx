@@ -11,6 +11,8 @@ import { IntegrityTrackerStub } from "@/components/company/IntegrityTrackerStub"
 import { KeyRisksSection } from "@/components/company/KeyRisksSection";
 import { FurtherReadingSection } from "@/components/company/FurtherReadingSection";
 import { DisclaimerFooter } from "@/components/company/DisclaimerFooter";
+import { FooterSearch } from "@/components/FooterSearch";
+import RecentDocs from "../../RecentDocs";
 
 type Params = { slug: string };
 
@@ -22,7 +24,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const archive = await loadCompanyBySlug(slug);
   if (!archive) {
-    return { title: "未找到公司档案 · 思无崖" };
+    notFound();
   }
   const id = archive.identity;
   return {
@@ -53,6 +55,13 @@ export default async function CompanyDetailPage({
       <IntegrityTrackerStub archive={archive} />
       <KeyRisksSection archive={archive} />
       <FurtherReadingSection archive={archive} />
+      <RecentDocs
+        limit={6}
+        heading="近期动态"
+        subheading="思无崖日报系统近期追踪的市场文档"
+        moreLink={false}
+      />
+      <FooterSearch />
       <DisclaimerFooter lastReviewed={archive.meta.last_reviewed} />
     </main>
   );

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { listAllBriefs } from "@/lib/briefs";
+import { FooterSearch } from "@/components/FooterSearch";
 
 export const metadata: Metadata = {
   title: "Weekly Brief 存档 · 思无崖",
@@ -61,6 +62,8 @@ export default async function BriefIndexPage() {
           目前只有样稿。第一期正式 Brief 将在 2026-05-15 发出。
         </p>
       )}
+
+      <FooterSearch />
 
       <footer className="disclaimer">
         <p>

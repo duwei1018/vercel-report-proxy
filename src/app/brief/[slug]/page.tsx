@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
 import { loadBriefBySlug } from "@/lib/briefs";
+import { FooterSearch } from "@/components/FooterSearch";
 
 type Params = { slug: string };
 
@@ -65,6 +66,8 @@ export default async function BriefDetailPage({
           </Link>
         </p>
       </section>
+
+      <FooterSearch />
 
       <footer className="disclaimer">
         <p>
