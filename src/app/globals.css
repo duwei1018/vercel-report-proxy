@@ -874,3 +874,87 @@ footer.disclaimer a {
   .brief-body { font-size: 16px; }
   .brief-body h2 { font-size: 19px; }
 }
+
+/* ─── 首页最近动态 widget (Claude@2026-04-26) ─── */
+/* 从 report.siwuya.org /api/recent-docs 拉 info-collector 日报最新文档，接入到 v2 首页 */
+.recent-docs {
+  margin-top: 32px;
+  padding: 28px 24px;
+  background: rgba(122, 92, 66, 0.04);
+  border-radius: 8px;
+  border: 1px solid rgba(122, 92, 66, 0.12);
+}
+.recent-docs h2 {
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+.recent-docs-sub {
+  margin: 0 0 16px;
+  font-size: 14px;
+  color: rgba(62, 47, 36, 0.6);
+}
+.recent-docs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+}
+.recent-docs-item {
+  margin: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(122, 92, 66, 0.1);
+}
+.recent-docs-item:last-child {
+  border-bottom: none;
+}
+.recent-docs-item a {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-decoration: none;
+  color: inherit;
+}
+.recent-docs-item a:hover .recent-docs-title {
+  color: var(--link-hover, #5C4332);
+  text-decoration: underline;
+}
+.recent-docs-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(62, 47, 36, 0.55);
+  line-height: 1.4;
+}
+.recent-docs-type {
+  display: inline-block;
+  padding: 1px 8px;
+  background: rgba(122, 92, 66, 0.14);
+  color: var(--link, #7A5C42);
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 500;
+}
+.recent-docs-date {
+  font-variant-numeric: tabular-nums;
+}
+.recent-docs-entity {
+  font-weight: 500;
+}
+.recent-docs-title {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text, #3E2F24);
+}
+.recent-docs-more {
+  margin: 0;
+  text-align: right;
+  font-size: 13px;
+}
+.recent-docs-more a {
+  color: var(--link, #7A5C42);
+  text-decoration: none;
+}
+.recent-docs-more a:hover {
+  color: var(--link-hover, #5C4332);
+  text-decoration: underline;
+}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import RecentDocs from "./RecentDocs";
 
 export default function HomePage() {
   return (
@@ -25,6 +26,8 @@ export default function HomePage() {
           <Link href="/beta">订阅 Beta</Link>
         </li>
       </ul>
+
+      <RecentDocs />
 
       <h2>开源</h2>
 
